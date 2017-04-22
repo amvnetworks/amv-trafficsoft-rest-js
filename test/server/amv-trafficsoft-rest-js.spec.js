@@ -1,14 +1,12 @@
 import amvTrafficsoftRestJs from '../../src/amv-trafficsoft-rest-js.js';
+import nock from 'nock';
 
 describe('amvTrafficsoftRestJs', () => {
-  var server;
-
   before(() => {
-    server = sinon.fakeServer.create();
+
   });
 
   after(() => {
-    server.restore();
   });
 
   it('should be running without any problems', () => {
@@ -16,8 +14,8 @@ describe('amvTrafficsoftRestJs', () => {
   });
 
   it('should create a client factory', () => {
-    var clientFactory = amvTrafficsoftRestJs({
-      baseURL: 'http://www.example.com',
+    var baseUrl = 'http://www.example.com';
+    var clientFactory = amvTrafficsoftRestJs(baseUrl, {
       username: 'john_doe',
       password: 'password',
       contractId: 1
@@ -27,8 +25,8 @@ describe('amvTrafficsoftRestJs', () => {
   });
 
   it('should create an xfcd client', () => {
-    var clientFactory = amvTrafficsoftRestJs({
-      baseURL: 'http://www.example.com',
+    var baseUrl = 'http://www.example.com';
+    var clientFactory = amvTrafficsoftRestJs(baseUrl, {
       username: 'john_doe',
       password: 'password',
       contractId: 1
@@ -42,12 +40,21 @@ describe('amvTrafficsoftRestJs', () => {
 
 
   it('should request last xfcd data', (done) => {
-    var clientFactory = amvTrafficsoftRestJs({
-      baseURL: 'http://www.example.com',
+    var baseUrl = 'http://www.example.com';
+    var server = nock(baseUrl)
+         .post('/1/xfcd/last')
+         .reply(200, {
+           username: 'pgte',
+           email: 'pedro.teixeira@gmail.com',
+           _id: '4324243fsd'
+         });
+
+    var options = {
       username: 'john_doe',
       password: 'password',
       contractId: 1
-    });
+    };
+    var clientFactory = amvTrafficsoftRestJs(baseUrl, options);
 
     var xfcdClient = clientFactory.xfcd();
 
@@ -64,9 +71,10 @@ describe('amvTrafficsoftRestJs', () => {
         done();
       })
       .catch(e => {
-        //done(e);
-        done();
+        //console.log(e);
+        //console.log('fuck - got NO data');
+        //done();
+        done(e);
       });
-
   });
 });
