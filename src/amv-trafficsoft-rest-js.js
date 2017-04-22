@@ -1,6 +1,5 @@
 import axios from 'axios';
 import _ from 'lodash';
-import defaults from 'lodash/defaults';
 
 /**
  * amvTrafficsoftRestJs
@@ -13,7 +12,6 @@ import defaults from 'lodash/defaults';
  * @return {Array} Result
  */
 
-
 var xfcdClient = function(baseUrl, options) {
   var xfcdRequestOptions = _.defaults({
       baseURL: baseUrl + '/xfcd',
@@ -21,6 +19,7 @@ var xfcdClient = function(baseUrl, options) {
 
   var httpClient = axios.create(xfcdRequestOptions);
   httpClient.defaults.timeout = 45000;
+  httpClient.defaults.headers.post['Content-Type'] = 'application/json';
 
   var getLastData = function(vehicleIdsArray, options) {
     var url = '/last';
@@ -39,10 +38,13 @@ export default function (baseUrl, options) {
     baseURL: baseUrl + '/' + contractId,
   }, options);
 
+
+
   return {
     xfcd: function(options) {
       var requestOptions = _.defaults(options, defaultRequestOptions)
-      return xfcdClient(requestOptions);
+      return xfcdClient(requestOptions.baseURL, requestOptions);
     }
   };
 }
+

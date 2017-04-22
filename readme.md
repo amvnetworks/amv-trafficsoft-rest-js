@@ -3,10 +3,7 @@
 [![Coveralls Status][coveralls-image]][coveralls-url]
 [![Dependency Status][depstat-image]][depstat-url]
 
-> AMV Trafficsoft API Javascript Client
-Access the AMV Trafficsoft API with javascript for client and server apps.
-
-Uses (axios)[https://github.com/mzabriskie/axios] as underlying http client.
+> Description
 
 ## Installation
 
@@ -21,37 +18,15 @@ var amvTrafficsoftRestJs = require('amv-trafficsoft-rest-js');
 
 ## API
 
-### `amvTrafficsoftRestJs([options])`
+### `amvTrafficsoftRestJs(data, [options])`
 Description
 
 #### Parameters
-- **Object** `options`: An configuration object containing the following options:
--- baseURL: the http endpoint e.g. http://example.com
--- username: your username
--- password: your password
--- contractId: your contract id
+- **Array** `data`: An array of data
+- **Object** `options`: An object containing the following fields:
 
 #### Return
-- **Object** - A AMV Trafficsoft client factory
-
-```javascript
-import amvApiClientsFactory from 'amv-trafficsoft-rest-js';
-var amvApiClients = amvApiClientsFactory({
-   username: '',
-   password: '',
-   contractId: '',
-   baseURL: 'http://www.example.com'
-});
-
-var xfcdClient = amvApiClients.xfcd();
-
-var vehicleIds = [1, 2, 3];
-xfcdClient.getLastData(vehicleIds)
-  .then(response => {
-  })
-  .catch(error => {
-  });
-```
+- **Array** - Result
 
 ## Development
 - `npm run build` - Build task that generates both minified and non-minified scripts;
@@ -63,7 +38,7 @@ xfcdClient.getLastData(vehicleIds)
 - `npm run coverage` - Run Isparta, a code coverage tool;
 
 ## License
-MIT © [AMV Networks GmbH](http://github.com/amvnetworks)
+MIT © [Alois Leitner](http://github.com/amvnetworks)
 
 [travis-url]: https://travis-ci.org/amvnetworks/amv-trafficsoft-rest-js
 [travis-image]: https://img.shields.io/travis/amvnetworks/amv-trafficsoft-rest-js.svg?style=flat-square

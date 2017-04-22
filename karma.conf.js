@@ -16,12 +16,13 @@ module.exports = function(config) {
     webpackMiddleware: {
       noInfo: true
     },
-    browsers: ['Chrome', 'Firefox'],
+    //browsers: ['Chrome', 'Firefox'],
+    browsers: ['Chrome'],
     plugins: [
       require('karma-webpack'),
       require('karma-mocha'),
       require('karma-sinon-chai'),
-      
+
       require('karma-chrome-launcher'),
       require('karma-firefox-launcher'),
       require('karma-spec-reporter')
