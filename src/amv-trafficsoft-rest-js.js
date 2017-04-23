@@ -17,12 +17,10 @@ var xfcdClient = function(baseUrl, options) {
       baseURL: baseUrl + '/xfcd',
   }, options);
 
-  console.log(xfcdRequestOptions.baseURL);
-
   var httpClient = axios.create(xfcdRequestOptions);
   httpClient.defaults.timeout = 45000;
-  httpClient.defaults.headers.post['Content-Type'] = 'application/json';
-  httpClient.defaults.headers.post['User-Agent'] = 'amv-trafficsoft-rest-js/1.0.0';
+  httpClient.defaults.headers.common['Content-Type'] = 'application/json';
+  httpClient.defaults.headers.common['User-Agent'] = 'amv-trafficsoft-rest-js/1.0.0';
 
   var getLastData = function(vehicleIdsArray, options) {
     var url = '/last';
@@ -36,12 +34,15 @@ var xfcdClient = function(baseUrl, options) {
 };
 
 export default function (baseUrl, options) {
-  var contractId = options && options.contractId || -1;
+  var opts = options || {};
+  var contractId = opts && opts.contractId || -1;
   var defaultRequestOptions = _.defaults({
     baseURL: baseUrl + '/' + contractId,
-  }, options);
-
-
+    auth: {
+      username: opts.username || 'username',
+      password: opts.password || 'password'
+    }
+  }, opts);
 
   return {
     xfcd: function(options) {

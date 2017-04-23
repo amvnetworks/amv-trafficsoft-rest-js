@@ -8,9 +8,11 @@ describe('amvTrafficsoftRestJs', () => {
 
   before(() => {
     DEFAULT_OPTIONS = {
-      username: 'john_doe',
-      password: 'password',
-      contractId: 1
+      contractId: 1,
+      auth: {
+        username: 'john_doe',
+        password: 'password'
+      }
     };
 
     BASE_URL = 'http://www.example.com/' +
@@ -33,9 +35,11 @@ describe('amvTrafficsoftRestJs', () => {
   it('should create a client factory', () => {
     var baseUrl = 'http://www.example.com';
     var clientFactory = amvTrafficsoftRestJs(baseUrl, {
-      username: 'john_doe',
-      password: 'password',
-      contractId: 1
+      contractId: 1,
+      auth: {
+        username: 'john_doe',
+        password: 'password',
+      }
     });
 
     expect(clientFactory).to.be.ok;
@@ -44,9 +48,11 @@ describe('amvTrafficsoftRestJs', () => {
   it('should create an xfcd client', () => {
     var baseUrl = 'http://www.example.com';
     var clientFactory = amvTrafficsoftRestJs(baseUrl, {
-      username: 'john_doe',
-      password: 'password',
-      contractId: 1
+      contractId: 1,
+      auth: {
+        username: 'john_doe',
+        password: 'password',
+      }
     });
 
     var xfcdClient = clientFactory.xfcd();
