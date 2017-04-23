@@ -43,15 +43,11 @@ export default function (baseUrl, options) {
   var contractId = opts && opts.contractId || -1;
   var defaultRequestOptions = _.defaults({
     baseURL: baseUrl + '/' + contractId,
-    auth: {
-      username: opts.username || 'username',
-      password: opts.password || 'password'
-    }
   }, opts);
 
   return {
     xfcd: function(options) {
-      var requestOptions = _.defaults(options, defaultRequestOptions)
+      var requestOptions = _.defaults(options || {}, defaultRequestOptions)
       return xfcdClient(requestOptions.baseURL, requestOptions);
     }
   };

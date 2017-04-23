@@ -18926,16 +18926,12 @@ exports.default = function (baseUrl, options) {
   var opts = options || {};
   var contractId = opts && opts.contractId || -1;
   var defaultRequestOptions = _lodash2.default.defaults({
-    baseURL: baseUrl + '/' + contractId,
-    auth: {
-      username: opts.username || 'username',
-      password: opts.password || 'password'
-    }
+    baseURL: baseUrl + '/' + contractId
   }, opts);
 
   return {
     xfcd: function xfcd(options) {
-      var requestOptions = _lodash2.default.defaults(options, defaultRequestOptions);
+      var requestOptions = _lodash2.default.defaults(options || {}, defaultRequestOptions);
       return xfcdClient(requestOptions.baseURL, requestOptions);
     }
   };
@@ -18951,7 +18947,7 @@ var _lodash2 = _interopRequireDefault(_lodash);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var isBrowserEnvironment = !!(window || {}).navigator;
+var isBrowserEnvironment = typeof window !== 'undefined' && !!window.navigator;
 /**
  * amvTrafficsoftRestJs
  * Description
