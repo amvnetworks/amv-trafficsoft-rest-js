@@ -18962,9 +18962,12 @@ var xfcdClient = function xfcdClient(baseUrl, options) {
     baseURL: baseUrl + '/xfcd'
   }, options);
 
+  console.log(xfcdRequestOptions.baseURL);
+
   var httpClient = _axios2.default.create(xfcdRequestOptions);
   httpClient.defaults.timeout = 45000;
   httpClient.defaults.headers.post['Content-Type'] = 'application/json';
+  httpClient.defaults.headers.post['User-Agent'] = 'amv-trafficsoft-rest-js/1.0.0';
 
   var getLastData = function getLastData(vehicleIdsArray, options) {
     var url = '/last';
