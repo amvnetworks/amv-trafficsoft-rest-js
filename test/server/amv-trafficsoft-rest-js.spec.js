@@ -2,97 +2,25 @@ import amvTrafficsoftRestJs from '../../src/amv-trafficsoft-rest-js.js';
 import nock from 'nock';
 
 describe('amvTrafficsoftRestJs', () => {
+  var DEFAULT_OPTIONS;
   var BASE_URL;
   var SERVER_MOCK;
-  var DEFAULT_OPTIONS;
 
   before(() => {
-    var mockResponseGetData = [{
-      "deliveryId": 0,
-      "timestamp": "2017-04-23T07:40:49.572Z",
-      "track": [
-        {
-          "id": 0,
-          "nodes": [
-            {
-              "altitude": 0,
-              "hdop": 0,
-              "heading": 0,
-              "id": 0,
-              "latitude": 0,
-              "longitude": 0,
-              "satellites": 0,
-              "speed": 0,
-              "states": [
-                {
-                  "latitude": 0,
-                  "longitude": 0,
-                  "param": "string",
-                  "timestamp": "2017-04-23T07:40:49.572Z",
-                  "value": "string"
-                }
-              ],
-              "timestamp": "2017-04-23T07:40:49.572Z",
-              "vdop": 0,
-              "xfcds": [
-                {
-                  "latitude": 0,
-                  "longitude": 0,
-                  "param": "string",
-                  "timestamp": "2017-04-23T07:40:49.572Z",
-                  "value": "string"
-                }
-              ]
-            }
-          ],
-          "vehicleId": 0
-        }
-      ]
-    }
-  ];
-    var mockResponseGetLastData = [{
-       "altitude": 0,
-       "hdop": 0,
-       "heading": 0,
-       "id": 0,
-       "latitude": 0,
-       "longitude": 0,
-       "satellites": 0,
-       "speed": 0,
-       "states": [
-         {
-           "latitude": 0,
-           "longitude": 0,
-           "param": "string",
-           "timestamp": "2017-04-23T07:40:49.580Z",
-           "value": "string"
-         }
-       ],
-       "timestamp": "2017-04-23T07:40:49.580Z",
-       "vdop": 0,
-       "xfcds": [
-         {
-           "latitude": 0,
-           "longitude": 0,
-           "param": "string",
-           "timestamp": "2017-04-23T07:40:49.580Z",
-           "value": "string"
-         }
-       ]
-      }
-    ];
-
-    BASE_URL = 'http://www.example.com';
-    SERVER_MOCK = nock(BASE_URL)
-         .post('/1/xfcd/last')
-         .reply(200, mockResponseGetLastData);
-
     DEFAULT_OPTIONS = {
       username: 'john_doe',
       password: 'password',
       contractId: 1
     };
 
+    BASE_URL = 'http://www.example.com/' +
+      DEFAULT_OPTIONS.contractId;
+
+    SERVER_MOCK = nock(BASE_URL)
+         .get('/1/xfcd')
+         .replyWithFile(200, __dirname + '/fixtures/GET_get_data.json')
+         .post('/1/xfcd/last')
+         .replyWithFile(200, __dirname + '/fixtures/POST_get_last_data.json');
   });
 
   after(() => {
