@@ -25,7 +25,8 @@ var xfcdClient = function(baseUrl, options) {
   var getLastData = function(vehicleIdsArray, options) {
     var url = '/last';
     var requestBody = vehicleIdsArray || [];
-    return httpClient.post(url, requestBody, options);
+    var opts = _.defaults(options || {}, xfcdRequestOptions);
+    return httpClient.post(url, requestBody, opts);
   };
 
   return {
