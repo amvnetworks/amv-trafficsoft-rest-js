@@ -22,8 +22,11 @@ var amvTrafficsoftRestJs = require('amv-trafficsoft-rest-js');
 Description
 
 #### Parameters
-- **Array** `data`: An array of data
-- **Object** `options`: An object containing the following fields:
+- **String** `baseUrl`: The base api endpoint
+- **Object** `options`: An options object containing the following fields:
+-- **Integer** `contractId`
+-- **String** `username`
+-- **String** `password`
 
 #### Return
 - **Array** - Result
@@ -36,9 +39,6 @@ Description
 - `npm run tdd` - Run Mocha tests & watch files for changes;
 - `npm run tdd-browser` - Run Karma (w/ Mocha) tests & watch files for changes;
 - `npm run coverage` - Run Isparta, a code coverage tool;
-
-## License
-MIT © [Alois Leitner](http://github.com/amvnetworks)
 
 [travis-url]: https://travis-ci.org/amvnetworks/amv-trafficsoft-rest-js
 [travis-image]: https://img.shields.io/travis/amvnetworks/amv-trafficsoft-rest-js.svg?style=flat-square
