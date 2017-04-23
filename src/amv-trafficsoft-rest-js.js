@@ -1,6 +1,7 @@
 import axios from 'axios';
 import _ from 'lodash';
 
+var isBrowserEnvironment = typeof(window) !== 'undefined' && !!window.navigator;
 /**
  * amvTrafficsoftRestJs
  * Description
@@ -20,7 +21,10 @@ var xfcdClient = function(baseUrl, options) {
   var httpClient = axios.create(xfcdRequestOptions);
   httpClient.defaults.timeout = 45000;
   httpClient.defaults.headers.common['Content-Type'] = 'application/json';
-  httpClient.defaults.headers.common['User-Agent'] = 'amv-trafficsoft-rest-js/1.0.0';
+
+  if (!isBrowserEnvironment) {
+    httpClient.defaults.headers.common['User-Agent'] = 'amv-trafficsoft-rest-js/1.0.0';
+  }
 
   var getLastData = function(vehicleIdsArray, options) {
     var url = '/last';

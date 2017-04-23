@@ -18951,6 +18951,7 @@ var _lodash2 = _interopRequireDefault(_lodash);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var isBrowserEnvironment = !!(window || {}).navigator;
 /**
  * amvTrafficsoftRestJs
  * Description
@@ -18970,12 +18971,16 @@ var xfcdClient = function xfcdClient(baseUrl, options) {
   var httpClient = _axios2.default.create(xfcdRequestOptions);
   httpClient.defaults.timeout = 45000;
   httpClient.defaults.headers.common['Content-Type'] = 'application/json';
-  httpClient.defaults.headers.common['User-Agent'] = 'amv-trafficsoft-rest-js/1.0.0';
+
+  if (!isBrowserEnvironment) {
+    httpClient.defaults.headers.common['User-Agent'] = 'amv-trafficsoft-rest-js/1.0.0';
+  }
 
   var getLastData = function getLastData(vehicleIdsArray, options) {
     var url = '/last';
     var requestBody = vehicleIdsArray || [];
-    return httpClient.post(url, requestBody, options);
+    var opts = _lodash2.default.defaults(options || {}, xfcdRequestOptions);
+    return httpClient.post(url, requestBody, opts);
   };
 
   return {
