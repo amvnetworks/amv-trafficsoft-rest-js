@@ -6,7 +6,7 @@
   "scripts": {
     "precommit": "npm test && npm run build",
     "build": "rimraf dist && webpack --optimize-minimize && webpack",
-    "coverage": "babel-node node_modules/isparta/bin/isparta cover node_modules/mocha/bin/_mocha --report lcovonly -- -R spec",
+    "coverage": "babel-node ./node_modules/isparta/bin/isparta cover -v ./node_modules/mocha/bin/_mocha --report lcovonly --config=./mocha.config.js -- ./test/ -R spec --recursive ",
     "coveralls": "npm run coverage && coveralls < coverage/lcov.info && rimraf coverage",
     "test": "npm run test-server && npm run test-browser",
     "test-server": "mocha test/server --recursive --bail --require babel-core/register mocha.config.js",
@@ -57,6 +57,7 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.16.1",
+    "babel-cli": "^6.24.1",
     "lodash": "^4.17.4"
   }
 }
