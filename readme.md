@@ -18,18 +18,34 @@ var amvTrafficsoftRestJs = require('amv-trafficsoft-rest-js');
 
 ## API
 
-### `amvTrafficsoftRestJs(data, [options])`
-Description
+### `amvTrafficsoftRestJs(baseUrl, options)`
+Get a factory for creating trafficsoft rest clients
 
 #### Parameters
-- **String** `baseUrl`: The base api endpoint
-- **Object** `options`: An options object containing the following fields:
--- **Integer** `contractId`
--- **String** `username`
--- **String** `password`
+- **String** `baseUrl` The base api endpoint
+- **Object** `options` An options object containing the following fields:
+  - **Integer** `contractId` The id of the contract in which's context to execute the request
+  - **Object** `auth`
+    - **String** `username` Basic auth username
+    - **String** `password` Basic auth password
 
 #### Return
-- **Array** - Result
+- **Object** - A factory for creating trafficsoft rest clients
+
+#### Example
+```js
+var baseUrl = ...
+var options = {
+  contractId: ...
+  auth: {
+    username: ...
+    password: ...
+  }
+};
+var amvTrafficsoftRestJs = require('amv-trafficsoft-rest-js');
+var amvTrafficsoftClientFactory = amvTrafficsoftRestJs(baseUrl, options);
+// ...
+```
 
 ## Development
 - `npm run build` - Build task that generates both minified and non-minified scripts;
