@@ -1,6 +1,7 @@
 var webpackConf = require('./webpack.config.js');
 module.exports = function(config) {
-  config.set({
+
+  var configuration = {
     files: [
       // Each file acts as entry point for the webpack configuration
       './node_modules/phantomjs-polyfill/bind-polyfill.js',
@@ -18,6 +19,18 @@ module.exports = function(config) {
     },
     //browsers: ['Chrome', 'Firefox'],
     browsers: ['Chrome'],
+
+    customLaunchers: {
+      Chrome_without_security: {
+        base: 'Chrome',
+        flags: ['--disable-web-security']
+      },
+      Chrome_travis_ci: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    },
+
     plugins: [
       require('karma-webpack'),
       require('karma-mocha'),
@@ -27,5 +40,11 @@ module.exports = function(config) {
       require('karma-firefox-launcher'),
       require('karma-spec-reporter')
     ],
-  });
+  };
+
+  if (process.env.TRAVIS) {
+    configuration.browsers = ['Chrome_travis_ci'];
+  }
+
+  config.set(configuration);
 };
