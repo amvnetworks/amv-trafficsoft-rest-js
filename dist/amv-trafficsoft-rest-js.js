@@ -18989,9 +18989,17 @@ var xfcdClient = function xfcdClient(baseUrl, options) {
     return httpClient.get(url, opts);
   };
 
+  var getDataAndConfirmDeliveries = function getDataAndConfirmDeliveries(deliveryIdsArray, options) {
+    var url = '';
+    var requestBody = deliveryIdsArray || [];
+    var opts = _lodash2.default.defaults(options || {}, xfcdRequestOptions);
+    return httpClient.post(url, requestBody, opts);
+  };
+
   return {
     getLastData: getLastData,
-    getData: getData
+    getData: getData,
+    getDataAndConfirmDeliveries: getDataAndConfirmDeliveries
   };
 };
 

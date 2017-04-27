@@ -15,7 +15,7 @@ var isBrowserEnvironment = typeof(window) !== 'undefined' && !!window.navigator;
 
 var xfcdClient = function(baseUrl, options) {
   var xfcdRequestOptions = _.defaults({
-      baseURL: baseUrl + '/xfcd',
+      baseURL: baseUrl + '/xfcd'
   }, options);
 
   var httpClient = axios.create(xfcdRequestOptions);
@@ -33,16 +33,23 @@ var xfcdClient = function(baseUrl, options) {
     return httpClient.post(url, requestBody, opts);
   };
 
-
   var getData = function(options) {
     var url = '';
     var opts = _.defaults(options || {}, xfcdRequestOptions);
     return httpClient.get(url, opts);
   };
 
+  var getDataAndConfirmDeliveries = function(deliveryIdsArray, options) {
+    var url = '';
+    var requestBody = deliveryIdsArray || [];
+    var opts = _.defaults(options || {}, xfcdRequestOptions);
+    return httpClient.post(url, requestBody, opts);
+  };
+
   return {
     getLastData: getLastData,
-    getData: getData
+    getData: getData,
+    getDataAndConfirmDeliveries: getDataAndConfirmDeliveries
   };
 };
 
@@ -50,7 +57,7 @@ export default function (baseUrl, options) {
   var opts = options || {};
   var contractId = opts && opts.contractId || -1;
   var defaultRequestOptions = _.defaults({
-    baseURL: baseUrl + '/' + contractId,
+    baseURL: baseUrl + '/' + contractId
   }, opts);
 
   return {

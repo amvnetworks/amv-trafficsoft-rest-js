@@ -1,0 +1,17 @@
+[ {
+  "deliveryId" : 0,
+  "track" : [ {
+    "id" : 0,
+    "nodes" : [ {
+      "id" : 0,
+      "xfcds" : [ {
+        "param" : "anyParam",
+        "value" : "anyValue",
+        "timestamp" : 1493244000000,
+        "longitude" : 1,
+        "latitude" : 1
+      } ],
+      "states" : [ ]
+    } ]
+  } ]
+} ]
