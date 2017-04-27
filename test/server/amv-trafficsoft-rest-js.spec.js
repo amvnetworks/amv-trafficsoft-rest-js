@@ -15,7 +15,7 @@ describe('amvTrafficsoftRestJs', () => {
       }
     };
 
-    BASE_URL = 'http://www.example.com/' +
+    BASE_URL = 'https://www.example.com/' +
       DEFAULT_OPTIONS.contractId;
 
     SERVER_MOCK = nock(BASE_URL)
@@ -24,7 +24,9 @@ describe('amvTrafficsoftRestJs', () => {
       .post('/1/xfcd')
       .replyWithFile(200, __dirname + '/fixtures/POST_contractId_xfcd.json')
       .post('/1/xfcd/last')
-      .replyWithFile(200, __dirname + '/fixtures/POST_contractId_xfcd_last.json');
+      .replyWithFile(200, __dirname + '/fixtures/POST_contractId_xfcd_last.json')
+      .post('/1/xfcd/confirm')
+      .replyWithFile(200, __dirname + '/fixtures/POST_contractId_xfcd_confirm.json');
   });
 
   after(() => {
@@ -35,27 +37,12 @@ describe('amvTrafficsoftRestJs', () => {
   });
 
   it('should create a client factory', () => {
-    var baseUrl = 'http://www.example.com';
-    var clientFactory = amvTrafficsoftRestJs(baseUrl, {
-      contractId: 1,
-      auth: {
-        username: 'john_doe',
-        password: 'password',
-      }
-    });
-
+    var clientFactory = amvTrafficsoftRestJs(BASE_URL, DEFAULT_OPTIONS);
     expect(clientFactory).to.be.ok;
   });
 
   it('should create an xfcd client', () => {
-    var baseUrl = 'http://www.example.com';
-    var clientFactory = amvTrafficsoftRestJs(baseUrl, {
-      contractId: 1,
-      auth: {
-        username: 'john_doe',
-        password: 'password',
-      }
-    });
+    var clientFactory = amvTrafficsoftRestJs(BASE_URL, DEFAULT_OPTIONS);
 
     var xfcdClient = clientFactory.xfcd();
 
@@ -71,6 +58,7 @@ describe('amvTrafficsoftRestJs', () => {
       .then(response => {
 
         expect(response).to.be.ok;
+        expect(response.data).to.be.ok;
 
         done();
       })
@@ -87,6 +75,7 @@ describe('amvTrafficsoftRestJs', () => {
       .then(response => {
 
         expect(response).to.be.ok;
+        expect(response.data).to.be.ok;
 
         done();
       })
@@ -103,6 +92,24 @@ describe('amvTrafficsoftRestJs', () => {
       .then(response => {
 
         expect(response).to.be.ok;
+        expect(response.data).to.be.ok;
+
+        done();
+      })
+      .catch(e => {
+        done(e);
+      });
+  });
+  it('should confirm deliveries', (done) => {
+    var clientFactory = amvTrafficsoftRestJs(BASE_URL, DEFAULT_OPTIONS);
+    var xfcdClient = clientFactory.xfcd();
+
+    var deliveryIds = [1, 2, 3];
+    xfcdClient.confirmDeliveries(deliveryIds)
+      .then(response => {
+
+        expect(response).to.be.ok;
+        expect(response.data).to.be.equal('');
 
         done();
       })

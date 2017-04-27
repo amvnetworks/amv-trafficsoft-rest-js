@@ -46,10 +46,18 @@ var xfcdClient = function(baseUrl, options) {
     return httpClient.post(url, requestBody, opts);
   };
 
+  var confirmDeliveries = function(deliveryIdsArray, options) {
+    var url = '/confirm';
+    var requestBody = deliveryIdsArray || [];
+    var opts = _.defaults(options || {}, xfcdRequestOptions);
+    return httpClient.post(url, requestBody, opts);
+  };
+
   return {
     getLastData: getLastData,
     getData: getData,
-    getDataAndConfirmDeliveries: getDataAndConfirmDeliveries
+    getDataAndConfirmDeliveries: getDataAndConfirmDeliveries,
+    confirmDeliveries: confirmDeliveries
   };
 };
 
