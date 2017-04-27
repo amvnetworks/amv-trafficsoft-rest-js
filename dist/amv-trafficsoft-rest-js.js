@@ -937,6 +937,10 @@ process.off = noop;
 process.removeListener = noop;
 process.removeAllListeners = noop;
 process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
 
 process.binding = function (name) {
     throw new Error('process.binding is not supported');
@@ -18979,8 +18983,15 @@ var xfcdClient = function xfcdClient(baseUrl, options) {
     return httpClient.post(url, requestBody, opts);
   };
 
+  var getData = function getData(options) {
+    var url = '';
+    var opts = _lodash2.default.defaults(options || {}, xfcdRequestOptions);
+    return httpClient.get(url, opts);
+  };
+
   return {
-    getLastData: getLastData
+    getLastData: getLastData,
+    getData: getData
   };
 };
 

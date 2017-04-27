@@ -1,31 +1,17 @@
-[{
-  "altitude": 0,
-  "hdop": 0,
-  "heading": 0,
-  "id": 0,
-  "latitude": 0,
-  "longitude": 0,
-  "satellites": 0,
-  "speed": 0,
-  "states": [
-    {
-      "latitude": 0,
-      "longitude": 0,
-      "param": "string",
-      "timestamp": "2017-04-23T07:40:49.580Z",
-      "value": "string"
-    }
-  ],
-  "timestamp": "2017-04-23T07:40:49.580Z",
-  "vdop": 0,
-  "xfcds": [
-    {
-      "latitude": 0,
-      "longitude": 0,
-      "param": "string",
-      "timestamp": "2017-04-23T07:40:49.580Z",
-      "value": "string"
-    }
-  ]
-}
-]
+[ {
+  "deliveryId" : 0,
+  "track" : [ {
+    "id" : 0,
+    "nodes" : [ {
+      "id" : 0,
+      "xfcds" : [ {
+        "param" : "anyParam",
+        "value" : "anyValue",
+        "timestamp" : 1493244000000,
+        "longitude" : 1,
+        "latitude" : 1
+      } ],
+      "states" : [ ]
+    } ]
+  } ]
+} ]

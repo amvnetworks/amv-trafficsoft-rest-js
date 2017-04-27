@@ -44,6 +44,8 @@ var options = {
 };
 var amvTrafficsoftRestJs = require('amv-trafficsoft-rest-js');
 var amvTrafficsoftClientFactory = amvTrafficsoftRestJs(baseUrl, options);
+
+var xfcdClient = amvTrafficsoftClientFactory.xfcd();
 // ...
 ```
 

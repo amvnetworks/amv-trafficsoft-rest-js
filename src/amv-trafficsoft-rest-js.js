@@ -33,8 +33,16 @@ var xfcdClient = function(baseUrl, options) {
     return httpClient.post(url, requestBody, opts);
   };
 
+
+  var getData = function(options) {
+    var url = '';
+    var opts = _.defaults(options || {}, xfcdRequestOptions);
+    return httpClient.get(url, opts);
+  };
+
   return {
-    getLastData: getLastData
+    getLastData: getLastData,
+    getData: getData
   };
 };
 

@@ -80,4 +80,25 @@ describe('amvTrafficsoftRestJs', () => {
         done(e);
       });
   });
+
+  it('should request xfcd data', (done) => {
+    var clientFactory = amvTrafficsoftRestJs(BASE_URL, DEFAULT_OPTIONS);
+
+    var xfcdClient = clientFactory.xfcd();
+
+    expect(xfcdClient).to.be.ok;
+
+    var contractId = 42;
+    xfcdClient.getData(contractId)
+      .then(response => {
+        console.log('ok - got data');
+
+        expect(response).to.be.ok;
+
+        done();
+      })
+      .catch(e => {
+        done(e);
+      });
+  });
 });
