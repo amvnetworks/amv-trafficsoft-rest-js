@@ -1,5 +1,5 @@
-import axios from 'axios';
-import _ from 'lodash';
+import axios from "axios";
+import _defaults from "lodash/defaults";
 
 var isBrowserEnvironment = typeof(window) !== 'undefined' && !!window.navigator;
 /**
@@ -13,9 +13,9 @@ var isBrowserEnvironment = typeof(window) !== 'undefined' && !!window.navigator;
  * @return {Array} Result
  */
 
-var xfcdClient = function(baseUrl, options) {
-  var xfcdRequestOptions = _.defaults({
-      baseURL: baseUrl + '/xfcd'
+var xfcdClient = function (baseUrl, options) {
+  var xfcdRequestOptions = _defaults({
+    baseURL: baseUrl + '/xfcd'
   }, options);
 
   var httpClient = axios.create(xfcdRequestOptions);
@@ -26,30 +26,30 @@ var xfcdClient = function(baseUrl, options) {
     httpClient.defaults.headers.common['User-Agent'] = 'amv-trafficsoft-rest-js/1.0.0';
   }
 
-  var getLastData = function(vehicleIdsArray, options) {
+  var getLastData = function (vehicleIdsArray, options) {
     var url = '/last';
     var requestBody = vehicleIdsArray || [];
-    var opts = _.defaults(options || {}, xfcdRequestOptions);
+    var opts = _defaults(options || {}, xfcdRequestOptions);
     return httpClient.post(url, requestBody, opts);
   };
 
-  var getData = function(options) {
+  var getData = function (options) {
     var url = '';
-    var opts = _.defaults(options || {}, xfcdRequestOptions);
+    var opts = _defaults(options || {}, xfcdRequestOptions);
     return httpClient.get(url, opts);
   };
 
-  var getDataAndConfirmDeliveries = function(deliveryIdsArray, options) {
+  var getDataAndConfirmDeliveries = function (deliveryIdsArray, options) {
     var url = '';
     var requestBody = deliveryIdsArray || [];
-    var opts = _.defaults(options || {}, xfcdRequestOptions);
+    var opts = _defaults(options || {}, xfcdRequestOptions);
     return httpClient.post(url, requestBody, opts);
   };
 
-  var confirmDeliveries = function(deliveryIdsArray, options) {
+  var confirmDeliveries = function (deliveryIdsArray, options) {
     var url = '/confirm';
     var requestBody = deliveryIdsArray || [];
-    var opts = _.defaults(options || {}, xfcdRequestOptions);
+    var opts = _defaults(options || {}, xfcdRequestOptions);
     return httpClient.post(url, requestBody, opts);
   };
 
@@ -64,13 +64,13 @@ var xfcdClient = function(baseUrl, options) {
 export default function (baseUrl, options) {
   var opts = options || {};
   var contractId = opts && opts.contractId || -1;
-  var defaultRequestOptions = _.defaults({
+  var defaultRequestOptions = _defaults({
     baseURL: baseUrl + '/' + contractId
   }, opts);
 
   return {
-    xfcd: function(options) {
-      var requestOptions = _.defaults(options || {}, defaultRequestOptions)
+    xfcd: function (options) {
+      var requestOptions = _defaults(options || {}, defaultRequestOptions)
       return xfcdClient(requestOptions.baseURL, requestOptions);
     }
   };
