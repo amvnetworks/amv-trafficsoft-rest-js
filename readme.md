@@ -58,6 +58,10 @@ var xfcdClient = amvTrafficsoftClientFactory.xfcd();
 - `npm run tdd-browser` - Run Karma (w/ Mocha) tests & watch files for changes;
 - `npm run coverage` - Run Isparta, a code coverage tool;
 
+
+# license
+The project is licensed under the Apache License. See [LICENSE](LICENSE) for details.
+
 [travis-url]: https://travis-ci.org/amvnetworks/amv-trafficsoft-rest-js
 [travis-image]: https://img.shields.io/travis/amvnetworks/amv-trafficsoft-rest-js.svg?style=flat-square
 

@@ -49,12 +49,13 @@
   },
   "author": {
     "name": "AMV Networks GmbH",
-    "email": "development@amv-networks.com"
+    "email": "development@amv-networks.com",
+    "url": "https://www.amv-networks.com"
   },
   "engines": {
     "node": ">=0.12.0"
   },
-  "license": "MIT",
+  "license": "Apache-2.0",
   "dependencies": {
     "axios": "^0.16.1",
     "babel-cli": "^6.24.1",

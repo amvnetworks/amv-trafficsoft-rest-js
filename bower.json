@@ -3,9 +3,13 @@
   "description": "",
   "main": "dist/amv-trafficsoft-rest-js.js",
   "authors": [
-    "[object Object]"
+    {
+      "name": "AMV Networks GmbH",
+      "email": "development@amv-networks.com",
+      "homepage": "https://www.amv-networks.com"
+    }
   ],
-  "license": "MIT",
+  "license": "Apache-2.0",
   "homepage": "https://github.com/amvnetworks/amv-trafficsoft-rest-js",
   "ignore": [
     "*",
