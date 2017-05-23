@@ -16,6 +16,7 @@
     "!dist/",
     "!dist/*",
     "!readme.md",
-    "!license.md"
+    "!LICENSE",
+    "!NOTICE"
   ]
 }

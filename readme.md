@@ -2,11 +2,12 @@
 [![Build Status][travis-image]][travis-url]
 [![Coveralls Status][coveralls-image]][coveralls-url]
 [![Dependency Status][depstat-image]][depstat-url]
+[![License](https://img.shields.io/github/license/amvnetworks/amv-trafficsoft-rest-js.svg?maxAge=2592000)](https://github.com/amvnetworks/amv-trafficsoft-rest-js/blob/master/LICENSE)
+
 
 > Description
 
 ## Installation
-
 ```
 $ npm install --save amv-trafficsoft-rest-js
 ```
