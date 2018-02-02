@@ -19,13 +19,13 @@ describe('xfcd-client', () => {
 
     SERVER_MOCK = nock(BASE_URL)
       .get('/api/rest/v1/xfcd?contractId=1')
-      .replyWithFile(200, __dirname + '/fixtures/xfcd/GET_contractId_xfcd.json')
+      .replyWithFile(200, __dirname + '/fixtures/xfcd/GET_v1_xfcd.json')
       .post('/api/rest/v1/xfcd?contractId=1')
-      .replyWithFile(200, __dirname + '/fixtures/xfcd/POST_contractId_xfcd.json')
+      .replyWithFile(200, __dirname + '/fixtures/xfcd/POST_v1_xfcd.json')
       .get('/api/rest/v1/xfcd/last?contractId=1&vehicleId=1&vehicleId=2&vehicleId=3')
-      .replyWithFile(200, __dirname + '/fixtures/xfcd/GET_contractId_xfcd_last.json')
+      .replyWithFile(200, __dirname + '/fixtures/xfcd/GET_v1_xfcd_last.json')
       .post('/api/rest/v1/xfcd/confirm?contractId=1')
-      .replyWithFile(200, __dirname + '/fixtures/xfcd/POST_contractId_xfcd_confirm.json');
+      .replyWithFile(200, __dirname + '/fixtures/xfcd/POST_v1_xfcd_confirm.json');
   });
 
   after(() => {
