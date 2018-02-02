@@ -15,17 +15,16 @@ describe('amvTrafficsoftRestJs', () => {
       }
     };
 
-    BASE_URL = 'https://www.example.com/' +
-      DEFAULT_OPTIONS.contractId;
+    BASE_URL = 'https://www.example.com';
 
     SERVER_MOCK = nock(BASE_URL)
-      .get('/1/xfcd')
+      .get('/api/rest/v1/xfcd?contractId=1')
       .replyWithFile(200, __dirname + '/fixtures/GET_contractId_xfcd.json')
-      .post('/1/xfcd')
+      .post('/api/rest/v1/xfcd?contractId=1')
       .replyWithFile(200, __dirname + '/fixtures/POST_contractId_xfcd.json')
-      .post('/1/xfcd/last')
+      .get('/api/rest/v1/xfcd/last?contractId=1&vehicleId=1&vehicleId=2&vehicleId=3')
       .replyWithFile(200, __dirname + '/fixtures/POST_contractId_xfcd_last.json')
-      .post('/1/xfcd/confirm')
+      .post('/api/rest/v1/xfcd/confirm?contractId=1')
       .replyWithFile(200, __dirname + '/fixtures/POST_contractId_xfcd_confirm.json');
   });
 

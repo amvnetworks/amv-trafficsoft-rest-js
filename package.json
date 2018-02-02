@@ -1,6 +1,6 @@
 {
   "name": "amv-trafficsoft-rest-js",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
   "main": "dist/amv-trafficsoft-rest-js.js",
   "scripts": {
@@ -57,8 +57,9 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "axios": "^0.16.1",
+    "axios": "^0.17.1",
     "babel-cli": "^6.24.1",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "qs": "6.5.1"
   }
 }
