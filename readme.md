@@ -4,12 +4,14 @@
 [![Dependency Status][depstat-image]][depstat-url]
 [![License](https://img.shields.io/github/license/amvnetworks/amv-trafficsoft-rest-js.svg?maxAge=2592000)](https://github.com/amvnetworks/amv-trafficsoft-rest-js/blob/master/LICENSE)
 
-
 > Description
+
+amv-trafficsoft-rest-js is a JavaScript client library for accessing the AMV TrafficSoft® API.
+Please note that this software is considered experimental until v1.0.0 is reached.
 
 ## Installation
 ```
-$ npm install --save amv-trafficsoft-rest-js
+$ bower install amvnetworks/amv-trafficsoft-rest-js#${version} --save 
 ```
 
 ## Usage
@@ -47,6 +49,7 @@ var amvTrafficsoftRestJs = require('amv-trafficsoft-rest-js');
 var amvTrafficsoftClientFactory = amvTrafficsoftRestJs(baseUrl, options);
 
 var xfcdClient = amvTrafficsoftClientFactory.xfcd();
+var contractClient = amvTrafficsoftClientFactory.contract();
 // ...
 ```
 
