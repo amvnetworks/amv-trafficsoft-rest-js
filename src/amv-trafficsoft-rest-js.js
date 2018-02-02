@@ -52,6 +52,35 @@ var createHttpClient = function(requestOptions) {
   return httpClient;
 };
 
+
+var contractClient = function (baseUrl, options) {
+  var contractRequestOptions = _defaults({
+    baseURL: baseUrl + '/api/rest/v1/contract',
+    params: {
+      contractId: options.contractId || -1
+    }
+  }, options);
+
+  var httpClient = createHttpClient(contractRequestOptions);
+
+  var fetchDataPackage = function (contractId, options) {
+    var url = '/' + contractId + '/datapackage';
+    var opts = _defaults(options || {}, contractRequestOptions);
+    return httpClient.get(url, opts);
+  };
+
+  var fetchSubscriptions = function (contractId, options) {
+    var url = '/' + contractId + '/subscription';
+    var opts = _defaults(options || {}, contractRequestOptions);
+    return httpClient.get(url, opts);
+  };
+
+  return {
+    fetchDataPackage: fetchDataPackage,
+    fetchSubscriptions: fetchSubscriptions
+  };
+};
+
 var xfcdClient = function (baseUrl, options) {
   var xfcdRequestOptions = _defaults({
     baseURL: baseUrl + '/api/rest/v1/xfcd',
@@ -104,6 +133,10 @@ export default function (baseUrl, options) {
   }, opts);
 
   return {
+    contract: function (options) {
+      var requestOptions = _defaults(options || {}, defaultRequestOptions)
+      return contractClient(requestOptions.baseURL, requestOptions);
+    },
     xfcd: function (options) {
       var requestOptions = _defaults(options || {}, defaultRequestOptions)
       return xfcdClient(requestOptions.baseURL, requestOptions);

@@ -2607,6 +2607,10 @@ exports.default = function (baseUrl, options) {
   }, opts);
 
   return {
+    contract: function contract(options) {
+      var requestOptions = (0, _defaults3.default)(options || {}, defaultRequestOptions);
+      return contractClient(requestOptions.baseURL, requestOptions);
+    },
     xfcd: function xfcd(options) {
       var requestOptions = (0, _defaults3.default)(options || {}, defaultRequestOptions);
       return xfcdClient(requestOptions.baseURL, requestOptions);
@@ -2676,6 +2680,34 @@ var createHttpClient = function createHttpClient(requestOptions) {
   }
 
   return httpClient;
+};
+
+var contractClient = function contractClient(baseUrl, options) {
+  var contractRequestOptions = (0, _defaults3.default)({
+    baseURL: baseUrl + '/api/rest/v1/contract',
+    params: {
+      contractId: options.contractId || -1
+    }
+  }, options);
+
+  var httpClient = createHttpClient(contractRequestOptions);
+
+  var fetchDataPackage = function fetchDataPackage(contractId, options) {
+    var url = '/' + contractId + '/datapackage';
+    var opts = (0, _defaults3.default)(options || {}, contractRequestOptions);
+    return httpClient.get(url, opts);
+  };
+
+  var fetchSubscriptions = function fetchSubscriptions(contractId, options) {
+    var url = '/' + contractId + '/subscription';
+    var opts = (0, _defaults3.default)(options || {}, contractRequestOptions);
+    return httpClient.get(url, opts);
+  };
+
+  return {
+    fetchDataPackage: fetchDataPackage,
+    fetchSubscriptions: fetchSubscriptions
+  };
 };
 
 var xfcdClient = function xfcdClient(baseUrl, options) {

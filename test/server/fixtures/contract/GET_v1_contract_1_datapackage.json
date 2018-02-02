@@ -1,0 +1,26 @@
+{
+  "gpsClean": true,
+  "params": {
+    "fcds": [
+      {
+        "code": "code",
+        "name": "name",
+        "description": "description"
+      }
+    ],
+    "xfcds": [
+      {
+        "code": "code",
+        "name": "name",
+        "description": "description"
+      }
+    ],
+    "states": [
+      {
+        "code": "code",
+        "name": "name",
+        "description": "description"
+      }
+    ]
+  }
+}
