@@ -1,0 +1,17 @@
+[
+  {
+    "btle": {
+      "accessCertificateId": "string",
+      "appId": "string",
+      "mobileSerialNumber": "string"
+    },
+    "driverTagId": "string",
+    "from": "2018-06-26T19:52:25.070Z",
+    "reservationId": 0,
+    "rfid": {
+      "driverTagId": "string"
+    },
+    "until": "2018-06-26T19:52:25.070Z",
+    "vehicleId": 0
+  }
+]

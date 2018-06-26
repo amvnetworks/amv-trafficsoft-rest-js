@@ -1,0 +1,10 @@
+[
+  {
+    "alwaysPowerOn": true,
+    "free": true,
+    "reservationIds": [
+      0
+    ],
+    "vehicleId": 0
+  }
+]

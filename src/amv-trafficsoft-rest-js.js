@@ -2,6 +2,7 @@ import _defaults from "lodash/defaults";
 
 import { contractClient } from "./client/contract";
 import { xfcdClient } from "./client/xfcd";
+import { carSharingReservationClient } from "./client/car-sharing-reservation";
 
 export default function (baseUrl, options) {
   var opts = options || {};
@@ -10,13 +11,17 @@ export default function (baseUrl, options) {
   }, opts);
 
   return {
-    contract: function (options) {
+    contract: (options) => {
       var requestOptions = _defaults(options || {}, defaultRequestOptions)
       return contractClient(requestOptions.baseURL, requestOptions);
     },
-    xfcd: function (options) {
+    xfcd: (options) => {
       var requestOptions = _defaults(options || {}, defaultRequestOptions)
       return xfcdClient(requestOptions.baseURL, requestOptions);
+    },
+    carSharingReservation: (options) => {
+      var requestOptions = _defaults(options || {}, defaultRequestOptions)
+      return carSharingReservationClient(requestOptions.baseURL, requestOptions);
     }
   };
 }
