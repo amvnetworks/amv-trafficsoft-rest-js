@@ -4,7 +4,6 @@ module.exports = function(config) {
   var configuration = {
     files: [
       // Each file acts as entry point for the webpack configuration
-      './node_modules/phantomjs-polyfill/bind-polyfill.js',
       'test/client/**/*.js'
     ],
     frameworks: ['mocha', 'sinon-chai'],
@@ -12,6 +11,7 @@ module.exports = function(config) {
       'test/client/**/*.js': ['webpack']
     },
     webpack: {
+      mode: 'production',
       module: webpackConf.module
     },
     webpackMiddleware: {

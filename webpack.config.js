@@ -1,26 +1,36 @@
 var webpack = require('webpack');
-var minimize = process.argv.indexOf('--optimize-minimize') === -1 ? false : true;
-var plugins = minimize ? [new webpack.optimize.UglifyJsPlugin({
-  minimize: true,
-  compress: {
-    drop_console: true
-  }
-})] : [];
+
+var isDev = process.argv.indexOf('--optimize-minimize') === -1 ? false : true;
+var minimize = !isDev;
+
+var fileExtension = minimize ? '.min.js' : '.js';
+var fullFileName = 'amv-trafficsoft-rest-js' + fileExtension;
+
+var plugins = [];
 
 module.exports = {
+  mode: 'production',
   entry: './src/amv-trafficsoft-rest-js.js',
   output: {
-    path:  __dirname + '/dist',
-    filename: minimize ? 'amv-trafficsoft-rest-js.min.js' : 'amv-trafficsoft-rest-js.js',
+    path: __dirname + '/dist',
+    filename: fullFileName,
     libraryTarget: 'umd',
+    globalObject: 'this',
     library: 'amvTrafficsoftRestJs'
   },
   module: {
-    loaders: [{
-      test: /\.js?$/,
-      exclude: /(node_modules|bower_components)/,
-      loader: 'babel-loader'
-    }]
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',  
+        }
+      }
+    ]
+  },
+  optimization: {
+    minimize: minimize
   },
   plugins: plugins
 };

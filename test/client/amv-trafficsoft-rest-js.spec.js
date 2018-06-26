@@ -1,4 +1,4 @@
-import amvTrafficsoftRestJs from '../../src/amv-trafficsoft-rest-js';
+import amvTrafficsoftRestJs from "../../dist/amv-trafficsoft-rest-js";
 
 describe('amvTrafficsoftRestJs', () => {
   it('should be running without any problems', () => {
