@@ -5,7 +5,7 @@
   "main": "dist/amv-trafficsoft-rest-js.js",
   "scripts": {
     "precommit": "npm test && npm run build",
-    "build": "rimraf dist && webpack --optimize-minimize && webpack",
+    "build": "rimraf dist/* && webpack --optimize-minimize && webpack",
     "coverage": "babel-node ./node_modules/isparta/bin/isparta cover -v ./node_modules/mocha/bin/_mocha --report lcovonly --config=./mocha.config.js -- ./test/ -R spec --recursive ",
     "coveralls": "npm run coverage && coveralls < coverage/lcov.info && rimraf coverage",
     "test": "npm run test-server && npm run test-browser",

@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 47);
+/******/ 	return __webpack_require__(__webpack_require__.s = 49);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -83,8 +83,8 @@ return /******/ (function(modules) { // webpackBootstrap
 "use strict";
 
 
-var bind = __webpack_require__(11);
-var isBuffer = __webpack_require__(48);
+var bind = __webpack_require__(12);
+var isBuffer = __webpack_require__(50);
 
 /*global toString:true*/
 
@@ -388,6 +388,44 @@ module.exports = {
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var apply = __webpack_require__(15),
+    assignInWith = __webpack_require__(77),
+    baseRest = __webpack_require__(17),
+    customDefaultsAssignIn = __webpack_require__(63);
+
+/**
+ * Assigns own and inherited enumerable string keyed properties of source
+ * objects to the destination object for all destination properties that
+ * resolve to `undefined`. Source objects are applied from left to right.
+ * Once a property is set, additional values of the same property are ignored.
+ *
+ * **Note:** This method mutates `object`.
+ *
+ * @static
+ * @since 0.1.0
+ * @memberOf _
+ * @category Object
+ * @param {Object} object The destination object.
+ * @param {...Object} [sources] The source objects.
+ * @returns {Object} Returns `object`.
+ * @see _.defaultsDeep
+ * @example
+ *
+ * _.defaults({ 'a': 1 }, { 'b': 2 }, { 'a': 3 });
+ * // => { 'a': 1, 'b': 2 }
+ */
+var defaults = baseRest(function(args) {
+  args.push(undefined, customDefaultsAssignIn);
+  return apply(assignInWith, undefined, args);
+});
+
+module.exports = defaults;
+
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports) {
 
 /**
@@ -424,14 +462,14 @@ module.exports = isObject;
 
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(0);
-var normalizeHeaderName = __webpack_require__(44);
+var normalizeHeaderName = __webpack_require__(46);
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -447,10 +485,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(7);
+    adapter = __webpack_require__(8);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(7);
+    adapter = __webpack_require__(8);
   }
   return adapter;
 }
@@ -521,15 +559,15 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(23)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(25)))
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(12),
-    getRawTag = __webpack_require__(63),
-    objectToString = __webpack_require__(70);
+var Symbol = __webpack_require__(14),
+    getRawTag = __webpack_require__(65),
+    objectToString = __webpack_require__(72);
 
 /** `Object#toString` result references. */
 var nullTag = '[object Null]',
@@ -558,10 +596,10 @@ module.exports = baseGetTag;
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var freeGlobal = __webpack_require__(17);
+var freeGlobal = __webpack_require__(19);
 
 /** Detect free variable `self`. */
 var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
@@ -573,7 +611,7 @@ module.exports = root;
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports) {
 
 /**
@@ -616,7 +654,7 @@ module.exports = eq;
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports) {
 
 /**
@@ -651,19 +689,19 @@ module.exports = isObjectLike;
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(0);
-var settle = __webpack_require__(36);
-var buildURL = __webpack_require__(39);
-var parseHeaders = __webpack_require__(45);
-var isURLSameOrigin = __webpack_require__(43);
-var createError = __webpack_require__(10);
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(38);
+var settle = __webpack_require__(38);
+var buildURL = __webpack_require__(41);
+var parseHeaders = __webpack_require__(47);
+var isURLSameOrigin = __webpack_require__(45);
+var createError = __webpack_require__(11);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(40);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -760,7 +798,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(41);
+      var cookies = __webpack_require__(43);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -836,10 +874,10 @@ module.exports = function xhrAdapter(config) {
   });
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(23)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(25)))
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -865,7 +903,7 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -877,13 +915,13 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var enhanceError = __webpack_require__(35);
+var enhanceError = __webpack_require__(37);
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -902,7 +940,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -920,10 +958,88 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var root = __webpack_require__(4);
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.createHttpClient = undefined;
+
+var _qs = __webpack_require__(85);
+
+var _qs2 = _interopRequireDefault(_qs);
+
+var _axios = __webpack_require__(31);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _defaults2 = __webpack_require__(1);
+
+var _defaults3 = _interopRequireDefault(_defaults2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var isBrowserEnvironment = typeof window !== 'undefined' && !!window.navigator;
+var userAgent = 'amv-trafficsoft-rest-js/0.2.0';
+
+/**
+ * Workaround for axios array params serialization.
+ * Outputs `a=1&a=2&a=3` instead of `a[]=1&a[]=2&a[]=3`.
+ *
+ * Strangely axios passes arrays as object with int keys
+ * to the paramsSerializer.. e.g.
+ * in: { a: [1,2,3] }
+ * axios out: { a : { '0': 1, '1': 2, '2': 3 })
+ */
+var serializeAxiosQueryParams = function serializeAxiosQueryParams(params) {
+  var query = _qs2.default.stringify(params, {
+    arrayFormat: 'repeat',
+    encodeValuesOnly: true
+  });
+
+  // replaces e.g. `a[]=1&a[]=2&a[]=3` with `a=1&a=2&a=3`
+  var queryWithArrayBracketsRemoved = query.replace(/\[\d+\]=/g, '=');
+  return queryWithArrayBracketsRemoved;
+};
+/**
+ * Create an axios http client with custom default values;
+ *
+ * @name createHttpClient
+ * @function
+ * @param {AxiosRequestConfig} requestOptions An axios request config object used to create the client
+ * - 
+ *
+ * @return {AxiosInstance} An axios http client
+ */
+var createHttpClient = function createHttpClient(requestOptions) {
+  var opts = (0, _defaults3.default)({
+    paramsSerializer: function paramsSerializer(params) {
+      return serializeAxiosQueryParams(params);
+    }
+  }, requestOptions);
+
+  var httpClient = _axios2.default.create(opts);
+  httpClient.defaults.timeout = 45000;
+  httpClient.defaults.headers.common['Content-Type'] = 'application/json';
+
+  if (!isBrowserEnvironment) {
+    httpClient.defaults.headers.common['User-Agent'] = userAgent;
+  }
+
+  return httpClient;
+};
+
+exports.createHttpClient = createHttpClient;
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var root = __webpack_require__(5);
 
 /** Built-in value references. */
 var Symbol = root.Symbol;
@@ -932,7 +1048,7 @@ module.exports = Symbol;
 
 
 /***/ }),
-/* 13 */
+/* 15 */
 /***/ (function(module, exports) {
 
 /**
@@ -959,10 +1075,10 @@ module.exports = apply;
 
 
 /***/ }),
-/* 14 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var defineProperty = __webpack_require__(16);
+var defineProperty = __webpack_require__(18);
 
 /**
  * The base implementation of `assignValue` and `assignMergeValue` without
@@ -990,12 +1106,12 @@ module.exports = baseAssignValue;
 
 
 /***/ }),
-/* 15 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var identity = __webpack_require__(19),
-    overRest = __webpack_require__(71),
-    setToString = __webpack_require__(72);
+var identity = __webpack_require__(21),
+    overRest = __webpack_require__(73),
+    setToString = __webpack_require__(74);
 
 /**
  * The base implementation of `_.rest` which doesn't validate or coerce arguments.
@@ -1013,10 +1129,10 @@ module.exports = baseRest;
 
 
 /***/ }),
-/* 16 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getNative = __webpack_require__(62);
+var getNative = __webpack_require__(64);
 
 var defineProperty = (function() {
   try {
@@ -1030,7 +1146,7 @@ module.exports = defineProperty;
 
 
 /***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/** Detect free variable `global` from Node.js. */
@@ -1038,10 +1154,10 @@ var freeGlobal = typeof global == 'object' && global && global.Object === Object
 
 module.exports = freeGlobal;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(85)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(88)))
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, exports) {
 
 /** Used as references for various `Number` constants. */
@@ -1069,7 +1185,7 @@ module.exports = isIndex;
 
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, exports) {
 
 /**
@@ -1096,11 +1212,11 @@ module.exports = identity;
 
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isFunction = __webpack_require__(21),
-    isLength = __webpack_require__(22);
+var isFunction = __webpack_require__(23),
+    isLength = __webpack_require__(24);
 
 /**
  * Checks if `value` is array-like. A value is considered array-like if it's
@@ -1135,11 +1251,11 @@ module.exports = isArrayLike;
 
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetTag = __webpack_require__(3),
-    isObject = __webpack_require__(1);
+var baseGetTag = __webpack_require__(4),
+    isObject = __webpack_require__(2);
 
 /** `Object#toString` result references. */
 var asyncTag = '[object AsyncFunction]',
@@ -1178,7 +1294,7 @@ module.exports = isFunction;
 
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports) {
 
 /** Used as references for various `Number` constants. */
@@ -1219,7 +1335,7 @@ module.exports = isLength;
 
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -1409,7 +1525,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1434,7 +1550,7 @@ module.exports = {
 
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1643,7 +1759,7 @@ exports.isBuffer = function isBuffer(obj) {
 
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -1671,66 +1787,54 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 27 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(30);
-
-/***/ }),
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var apply = __webpack_require__(13),
-    assignInWith = __webpack_require__(75),
-    baseRest = __webpack_require__(15),
-    customDefaultsAssignIn = __webpack_require__(61);
-
-/**
- * Assigns own and inherited enumerable string keyed properties of source
- * objects to the destination object for all destination properties that
- * resolve to `undefined`. Source objects are applied from left to right.
- * Once a property is set, additional values of the same property are ignored.
- *
- * **Note:** This method mutates `object`.
- *
- * @static
- * @since 0.1.0
- * @memberOf _
- * @category Object
- * @param {Object} object The destination object.
- * @param {...Object} [sources] The source objects.
- * @returns {Object} Returns `object`.
- * @see _.defaultsDeep
- * @example
- *
- * _.defaults({ 'a': 1 }, { 'b': 2 }, { 'a': 3 });
- * // => { 'a': 1, 'b': 2 }
- */
-var defaults = baseRest(function(args) {
-  args.push(undefined, customDefaultsAssignIn);
-  return apply(assignInWith, undefined, args);
-});
-
-module.exports = defaults;
-
-
-/***/ }),
 /* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var stringify = __webpack_require__(84);
-var parse = __webpack_require__(83);
-var formats = __webpack_require__(24);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.contractClient = undefined;
 
-module.exports = {
-    formats: formats,
-    parse: parse,
-    stringify: stringify
+var _defaults2 = __webpack_require__(1);
+
+var _defaults3 = _interopRequireDefault(_defaults2);
+
+var _http = __webpack_require__(13);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var contractClient = function contractClient(baseUrl, options) {
+  var contractRequestOptions = (0, _defaults3.default)({
+    baseURL: baseUrl + '/api/rest/v1/contract',
+    params: {
+      contractId: options.contractId || -1
+    }
+  }, options);
+
+  var httpClient = (0, _http.createHttpClient)(contractRequestOptions);
+
+  var fetchDataPackage = function fetchDataPackage(contractId, options) {
+    var url = '/' + contractId + '/datapackage';
+    var opts = (0, _defaults3.default)(options || {}, contractRequestOptions);
+    return httpClient.get(url, opts);
+  };
+
+  var fetchSubscriptions = function fetchSubscriptions(contractId, options) {
+    var url = '/' + contractId + '/subscription';
+    var opts = (0, _defaults3.default)(options || {}, contractRequestOptions);
+    return httpClient.get(url, opts);
+  };
+
+  return {
+    fetchDataPackage: fetchDataPackage,
+    fetchSubscriptions: fetchSubscriptions
+  };
 };
 
+exports.contractClient = contractClient;
 
 /***/ }),
 /* 30 */
@@ -1739,10 +1843,83 @@ module.exports = {
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.xfcdClient = undefined;
+
+var _defaults2 = __webpack_require__(1);
+
+var _defaults3 = _interopRequireDefault(_defaults2);
+
+var _http = __webpack_require__(13);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var xfcdClient = function xfcdClient(baseUrl, options) {
+  var xfcdRequestOptions = (0, _defaults3.default)({
+    baseURL: baseUrl + '/api/rest/v1/xfcd',
+    params: {
+      contractId: options.contractId || -1
+    }
+  }, options);
+
+  var httpClient = (0, _http.createHttpClient)(xfcdRequestOptions);
+
+  var getLastData = function getLastData(vehicleIdsArray, options) {
+    var url = '/last';
+    var opts = (0, _defaults3.default)(options || {}, xfcdRequestOptions);
+    opts.params['vehicleId'] = vehicleIdsArray || [];
+    return httpClient.get(url, opts);
+  };
+
+  var getData = function getData(options) {
+    var url = '';
+    var opts = (0, _defaults3.default)(options || {}, xfcdRequestOptions);
+    return httpClient.get(url, opts);
+  };
+
+  var getDataAndConfirmDeliveries = function getDataAndConfirmDeliveries(deliveryIdsArray, options) {
+    var url = '';
+    var requestBody = deliveryIdsArray || [];
+    var opts = (0, _defaults3.default)(options || {}, xfcdRequestOptions);
+    return httpClient.post(url, requestBody, opts);
+  };
+
+  var confirmDeliveries = function confirmDeliveries(deliveryIdsArray, options) {
+    var url = '/confirm';
+    var requestBody = deliveryIdsArray || [];
+    var opts = (0, _defaults3.default)(options || {}, xfcdRequestOptions);
+    return httpClient.post(url, requestBody, opts);
+  };
+
+  return {
+    getLastData: getLastData,
+    getData: getData,
+    getDataAndConfirmDeliveries: getDataAndConfirmDeliveries,
+    confirmDeliveries: confirmDeliveries
+  };
+};
+
+exports.xfcdClient = xfcdClient;
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(32);
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 var utils = __webpack_require__(0);
-var bind = __webpack_require__(11);
-var Axios = __webpack_require__(32);
-var defaults = __webpack_require__(2);
+var bind = __webpack_require__(12);
+var Axios = __webpack_require__(34);
+var defaults = __webpack_require__(3);
 
 /**
  * Create an instance of Axios
@@ -1775,15 +1952,15 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(8);
-axios.CancelToken = __webpack_require__(31);
-axios.isCancel = __webpack_require__(9);
+axios.Cancel = __webpack_require__(9);
+axios.CancelToken = __webpack_require__(33);
+axios.isCancel = __webpack_require__(10);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(46);
+axios.spread = __webpack_require__(48);
 
 module.exports = axios;
 
@@ -1792,13 +1969,13 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var Cancel = __webpack_require__(8);
+var Cancel = __webpack_require__(9);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -1856,16 +2033,16 @@ module.exports = CancelToken;
 
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var defaults = __webpack_require__(2);
+var defaults = __webpack_require__(3);
 var utils = __webpack_require__(0);
-var InterceptorManager = __webpack_require__(33);
-var dispatchRequest = __webpack_require__(34);
+var InterceptorManager = __webpack_require__(35);
+var dispatchRequest = __webpack_require__(36);
 
 /**
  * Create a new instance of Axios
@@ -1942,7 +2119,7 @@ module.exports = Axios;
 
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2001,18 +2178,18 @@ module.exports = InterceptorManager;
 
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(0);
-var transformData = __webpack_require__(37);
-var isCancel = __webpack_require__(9);
-var defaults = __webpack_require__(2);
-var isAbsoluteURL = __webpack_require__(42);
-var combineURLs = __webpack_require__(40);
+var transformData = __webpack_require__(39);
+var isCancel = __webpack_require__(10);
+var defaults = __webpack_require__(3);
+var isAbsoluteURL = __webpack_require__(44);
+var combineURLs = __webpack_require__(42);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -2094,7 +2271,7 @@ module.exports = function dispatchRequest(config) {
 
 
 /***/ }),
-/* 35 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2122,13 +2299,13 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 
 /***/ }),
-/* 36 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var createError = __webpack_require__(10);
+var createError = __webpack_require__(11);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -2155,7 +2332,7 @@ module.exports = function settle(resolve, reject, response) {
 
 
 /***/ }),
-/* 37 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2182,7 +2359,7 @@ module.exports = function transformData(data, headers, fns) {
 
 
 /***/ }),
-/* 38 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2225,7 +2402,7 @@ module.exports = btoa;
 
 
 /***/ }),
-/* 39 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2300,7 +2477,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 
 /***/ }),
-/* 40 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2321,7 +2498,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 
 /***/ }),
-/* 41 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2381,7 +2558,7 @@ module.exports = (
 
 
 /***/ }),
-/* 42 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2402,7 +2579,7 @@ module.exports = function isAbsoluteURL(url) {
 
 
 /***/ }),
-/* 43 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2477,7 +2654,7 @@ module.exports = (
 
 
 /***/ }),
-/* 44 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2496,7 +2673,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 
 /***/ }),
-/* 45 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2556,7 +2733,7 @@ module.exports = function parseHeaders(headers) {
 
 
 /***/ }),
-/* 46 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2590,7 +2767,7 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 47 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2609,156 +2786,29 @@ exports.default = function (baseUrl, options) {
   return {
     contract: function contract(options) {
       var requestOptions = (0, _defaults3.default)(options || {}, defaultRequestOptions);
-      return contractClient(requestOptions.baseURL, requestOptions);
+      return (0, _contract.contractClient)(requestOptions.baseURL, requestOptions);
     },
     xfcd: function xfcd(options) {
       var requestOptions = (0, _defaults3.default)(options || {}, defaultRequestOptions);
-      return xfcdClient(requestOptions.baseURL, requestOptions);
+      return (0, _xfcd.xfcdClient)(requestOptions.baseURL, requestOptions);
     }
   };
 };
 
-var _qs = __webpack_require__(29);
-
-var _qs2 = _interopRequireDefault(_qs);
-
-var _axios = __webpack_require__(27);
-
-var _axios2 = _interopRequireDefault(_axios);
-
-var _defaults2 = __webpack_require__(28);
+var _defaults2 = __webpack_require__(1);
 
 var _defaults3 = _interopRequireDefault(_defaults2);
 
+var _contract = __webpack_require__(29);
+
+var _xfcd = __webpack_require__(30);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var isBrowserEnvironment = typeof window !== 'undefined' && !!window.navigator;
-var userAgent = 'amv-trafficsoft-rest-js/0.2.0';
-
-/**
- * Workaround for axios array params serialization.
- * Outputs `a=1&a=2&a=3` instead of `a[]=1&a[]=2&a[]=3`.
- *
- * Strangely axios passes arrays as object with int keys
- * to the paramsSerializer.. e.g.
- * in: { a: [1,2,3] }
- * axios out: { a : { '0': 1, '1': 2, '2': 3 })
- */
-var serializeAxiosQueryParams = function serializeAxiosQueryParams(params) {
-  var query = _qs2.default.stringify(params, {
-    arrayFormat: 'repeat',
-    encodeValuesOnly: true
-  });
-
-  // replaces e.g. `a[]=1&a[]=2&a[]=3` with `a=1&a=2&a=3`
-  var queryWithArrayBracketsRemoved = query.replace(/\[\d+\]=/g, '=');
-  return queryWithArrayBracketsRemoved;
-};
-/**
- * amvTrafficsoftRestJs
- * Description
- *
- * @name amvTrafficsoftRestJs
- * @function
- * @param {Object} options An object containing the following fields:
- *
- * @return {Array} Result
- */
-var createHttpClient = function createHttpClient(requestOptions) {
-  var opts = (0, _defaults3.default)({
-    paramsSerializer: function paramsSerializer(params) {
-      return serializeAxiosQueryParams(params);
-    }
-  }, requestOptions);
-
-  var httpClient = _axios2.default.create(opts);
-  httpClient.defaults.timeout = 45000;
-  httpClient.defaults.headers.common['Content-Type'] = 'application/json';
-
-  if (!isBrowserEnvironment) {
-    httpClient.defaults.headers.common['User-Agent'] = userAgent;
-  }
-
-  return httpClient;
-};
-
-var contractClient = function contractClient(baseUrl, options) {
-  var contractRequestOptions = (0, _defaults3.default)({
-    baseURL: baseUrl + '/api/rest/v1/contract',
-    params: {
-      contractId: options.contractId || -1
-    }
-  }, options);
-
-  var httpClient = createHttpClient(contractRequestOptions);
-
-  var fetchDataPackage = function fetchDataPackage(contractId, options) {
-    var url = '/' + contractId + '/datapackage';
-    var opts = (0, _defaults3.default)(options || {}, contractRequestOptions);
-    return httpClient.get(url, opts);
-  };
-
-  var fetchSubscriptions = function fetchSubscriptions(contractId, options) {
-    var url = '/' + contractId + '/subscription';
-    var opts = (0, _defaults3.default)(options || {}, contractRequestOptions);
-    return httpClient.get(url, opts);
-  };
-
-  return {
-    fetchDataPackage: fetchDataPackage,
-    fetchSubscriptions: fetchSubscriptions
-  };
-};
-
-var xfcdClient = function xfcdClient(baseUrl, options) {
-  var xfcdRequestOptions = (0, _defaults3.default)({
-    baseURL: baseUrl + '/api/rest/v1/xfcd',
-    params: {
-      contractId: options.contractId || -1
-    }
-  }, options);
-
-  var httpClient = createHttpClient(xfcdRequestOptions);
-
-  var getLastData = function getLastData(vehicleIdsArray, options) {
-    var url = '/last';
-    var opts = (0, _defaults3.default)(options || {}, xfcdRequestOptions);
-    opts.params['vehicleId'] = vehicleIdsArray || [];
-    return httpClient.get(url, opts);
-  };
-
-  var getData = function getData(options) {
-    var url = '';
-    var opts = (0, _defaults3.default)(options || {}, xfcdRequestOptions);
-    return httpClient.get(url, opts);
-  };
-
-  var getDataAndConfirmDeliveries = function getDataAndConfirmDeliveries(deliveryIdsArray, options) {
-    var url = '';
-    var requestBody = deliveryIdsArray || [];
-    var opts = (0, _defaults3.default)(options || {}, xfcdRequestOptions);
-    return httpClient.post(url, requestBody, opts);
-  };
-
-  var confirmDeliveries = function confirmDeliveries(deliveryIdsArray, options) {
-    var url = '/confirm';
-    var requestBody = deliveryIdsArray || [];
-    var opts = (0, _defaults3.default)(options || {}, xfcdRequestOptions);
-    return httpClient.post(url, requestBody, opts);
-  };
-
-  return {
-    getLastData: getLastData,
-    getData: getData,
-    getDataAndConfirmDeliveries: getDataAndConfirmDeliveries,
-    confirmDeliveries: confirmDeliveries
-  };
-};
 
 module.exports = exports["default"];
 
 /***/ }),
-/* 48 */
+/* 50 */
 /***/ (function(module, exports) {
 
 /*!
@@ -2785,15 +2835,15 @@ function isSlowBuffer (obj) {
 
 
 /***/ }),
-/* 49 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseTimes = __webpack_require__(56),
-    isArguments = __webpack_require__(77),
-    isArray = __webpack_require__(78),
-    isBuffer = __webpack_require__(79),
-    isIndex = __webpack_require__(18),
-    isTypedArray = __webpack_require__(80);
+var baseTimes = __webpack_require__(58),
+    isArguments = __webpack_require__(79),
+    isArray = __webpack_require__(80),
+    isBuffer = __webpack_require__(81),
+    isIndex = __webpack_require__(20),
+    isTypedArray = __webpack_require__(82);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -2840,11 +2890,11 @@ module.exports = arrayLikeKeys;
 
 
 /***/ }),
-/* 50 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseAssignValue = __webpack_require__(14),
-    eq = __webpack_require__(5);
+var baseAssignValue = __webpack_require__(16),
+    eq = __webpack_require__(6);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -2874,11 +2924,11 @@ module.exports = assignValue;
 
 
 /***/ }),
-/* 51 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetTag = __webpack_require__(3),
-    isObjectLike = __webpack_require__(6);
+var baseGetTag = __webpack_require__(4),
+    isObjectLike = __webpack_require__(7);
 
 /** `Object#toString` result references. */
 var argsTag = '[object Arguments]';
@@ -2898,13 +2948,13 @@ module.exports = baseIsArguments;
 
 
 /***/ }),
-/* 52 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isFunction = __webpack_require__(21),
-    isMasked = __webpack_require__(66),
-    isObject = __webpack_require__(1),
-    toSource = __webpack_require__(74);
+var isFunction = __webpack_require__(23),
+    isMasked = __webpack_require__(68),
+    isObject = __webpack_require__(2),
+    toSource = __webpack_require__(76);
 
 /**
  * Used to match `RegExp`
@@ -2951,12 +3001,12 @@ module.exports = baseIsNative;
 
 
 /***/ }),
-/* 53 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetTag = __webpack_require__(3),
-    isLength = __webpack_require__(22),
-    isObjectLike = __webpack_require__(6);
+var baseGetTag = __webpack_require__(4),
+    isLength = __webpack_require__(24),
+    isObjectLike = __webpack_require__(7);
 
 /** `Object#toString` result references. */
 var argsTag = '[object Arguments]',
@@ -3017,12 +3067,12 @@ module.exports = baseIsTypedArray;
 
 
 /***/ }),
-/* 54 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(1),
-    isPrototype = __webpack_require__(67),
-    nativeKeysIn = __webpack_require__(68);
+var isObject = __webpack_require__(2),
+    isPrototype = __webpack_require__(69),
+    nativeKeysIn = __webpack_require__(70);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -3056,12 +3106,12 @@ module.exports = baseKeysIn;
 
 
 /***/ }),
-/* 55 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var constant = __webpack_require__(76),
-    defineProperty = __webpack_require__(16),
-    identity = __webpack_require__(19);
+var constant = __webpack_require__(78),
+    defineProperty = __webpack_require__(18),
+    identity = __webpack_require__(21);
 
 /**
  * The base implementation of `setToString` without support for hot loop shorting.
@@ -3084,7 +3134,7 @@ module.exports = baseSetToString;
 
 
 /***/ }),
-/* 56 */
+/* 58 */
 /***/ (function(module, exports) {
 
 /**
@@ -3110,7 +3160,7 @@ module.exports = baseTimes;
 
 
 /***/ }),
-/* 57 */
+/* 59 */
 /***/ (function(module, exports) {
 
 /**
@@ -3130,11 +3180,11 @@ module.exports = baseUnary;
 
 
 /***/ }),
-/* 58 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var assignValue = __webpack_require__(50),
-    baseAssignValue = __webpack_require__(14);
+var assignValue = __webpack_require__(52),
+    baseAssignValue = __webpack_require__(16);
 
 /**
  * Copies properties of `source` to `object`.
@@ -3176,10 +3226,10 @@ module.exports = copyObject;
 
 
 /***/ }),
-/* 59 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var root = __webpack_require__(4);
+var root = __webpack_require__(5);
 
 /** Used to detect overreaching core-js shims. */
 var coreJsData = root['__core-js_shared__'];
@@ -3188,11 +3238,11 @@ module.exports = coreJsData;
 
 
 /***/ }),
-/* 60 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseRest = __webpack_require__(15),
-    isIterateeCall = __webpack_require__(65);
+var baseRest = __webpack_require__(17),
+    isIterateeCall = __webpack_require__(67);
 
 /**
  * Creates a function like `_.assign`.
@@ -3231,10 +3281,10 @@ module.exports = createAssigner;
 
 
 /***/ }),
-/* 61 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var eq = __webpack_require__(5);
+var eq = __webpack_require__(6);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -3266,11 +3316,11 @@ module.exports = customDefaultsAssignIn;
 
 
 /***/ }),
-/* 62 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseIsNative = __webpack_require__(52),
-    getValue = __webpack_require__(64);
+var baseIsNative = __webpack_require__(54),
+    getValue = __webpack_require__(66);
 
 /**
  * Gets the native function at `key` of `object`.
@@ -3289,10 +3339,10 @@ module.exports = getNative;
 
 
 /***/ }),
-/* 63 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(12);
+var Symbol = __webpack_require__(14);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -3341,7 +3391,7 @@ module.exports = getRawTag;
 
 
 /***/ }),
-/* 64 */
+/* 66 */
 /***/ (function(module, exports) {
 
 /**
@@ -3360,13 +3410,13 @@ module.exports = getValue;
 
 
 /***/ }),
-/* 65 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var eq = __webpack_require__(5),
-    isArrayLike = __webpack_require__(20),
-    isIndex = __webpack_require__(18),
-    isObject = __webpack_require__(1);
+var eq = __webpack_require__(6),
+    isArrayLike = __webpack_require__(22),
+    isIndex = __webpack_require__(20),
+    isObject = __webpack_require__(2);
 
 /**
  * Checks if the given arguments are from an iteratee call.
@@ -3396,10 +3446,10 @@ module.exports = isIterateeCall;
 
 
 /***/ }),
-/* 66 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var coreJsData = __webpack_require__(59);
+var coreJsData = __webpack_require__(61);
 
 /** Used to detect methods masquerading as native. */
 var maskSrcKey = (function() {
@@ -3422,7 +3472,7 @@ module.exports = isMasked;
 
 
 /***/ }),
-/* 67 */
+/* 69 */
 /***/ (function(module, exports) {
 
 /** Used for built-in method references. */
@@ -3446,7 +3496,7 @@ module.exports = isPrototype;
 
 
 /***/ }),
-/* 68 */
+/* 70 */
 /***/ (function(module, exports) {
 
 /**
@@ -3472,10 +3522,10 @@ module.exports = nativeKeysIn;
 
 
 /***/ }),
-/* 69 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(module) {var freeGlobal = __webpack_require__(17);
+/* WEBPACK VAR INJECTION */(function(module) {var freeGlobal = __webpack_require__(19);
 
 /** Detect free variable `exports`. */
 var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
@@ -3498,10 +3548,10 @@ var nodeUtil = (function() {
 
 module.exports = nodeUtil;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(26)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(28)(module)))
 
 /***/ }),
-/* 70 */
+/* 72 */
 /***/ (function(module, exports) {
 
 /** Used for built-in method references. */
@@ -3529,10 +3579,10 @@ module.exports = objectToString;
 
 
 /***/ }),
-/* 71 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var apply = __webpack_require__(13);
+var apply = __webpack_require__(15);
 
 /* Built-in method references for those with the same name as other `lodash` methods. */
 var nativeMax = Math.max;
@@ -3571,11 +3621,11 @@ module.exports = overRest;
 
 
 /***/ }),
-/* 72 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseSetToString = __webpack_require__(55),
-    shortOut = __webpack_require__(73);
+var baseSetToString = __webpack_require__(57),
+    shortOut = __webpack_require__(75);
 
 /**
  * Sets the `toString` method of `func` to return `string`.
@@ -3591,7 +3641,7 @@ module.exports = setToString;
 
 
 /***/ }),
-/* 73 */
+/* 75 */
 /***/ (function(module, exports) {
 
 /** Used to detect hot functions by number of calls within a span of milliseconds. */
@@ -3634,7 +3684,7 @@ module.exports = shortOut;
 
 
 /***/ }),
-/* 74 */
+/* 76 */
 /***/ (function(module, exports) {
 
 /** Used for built-in method references. */
@@ -3666,12 +3716,12 @@ module.exports = toSource;
 
 
 /***/ }),
-/* 75 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var copyObject = __webpack_require__(58),
-    createAssigner = __webpack_require__(60),
-    keysIn = __webpack_require__(81);
+var copyObject = __webpack_require__(60),
+    createAssigner = __webpack_require__(62),
+    keysIn = __webpack_require__(83);
 
 /**
  * This method is like `_.assignIn` except that it accepts `customizer`
@@ -3710,7 +3760,7 @@ module.exports = assignInWith;
 
 
 /***/ }),
-/* 76 */
+/* 78 */
 /***/ (function(module, exports) {
 
 /**
@@ -3742,11 +3792,11 @@ module.exports = constant;
 
 
 /***/ }),
-/* 77 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseIsArguments = __webpack_require__(51),
-    isObjectLike = __webpack_require__(6);
+var baseIsArguments = __webpack_require__(53),
+    isObjectLike = __webpack_require__(7);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -3784,7 +3834,7 @@ module.exports = isArguments;
 
 
 /***/ }),
-/* 78 */
+/* 80 */
 /***/ (function(module, exports) {
 
 /**
@@ -3816,11 +3866,11 @@ module.exports = isArray;
 
 
 /***/ }),
-/* 79 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__(4),
-    stubFalse = __webpack_require__(82);
+/* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__(5),
+    stubFalse = __webpack_require__(84);
 
 /** Detect free variable `exports`. */
 var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
@@ -3858,15 +3908,15 @@ var isBuffer = nativeIsBuffer || stubFalse;
 
 module.exports = isBuffer;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(26)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(28)(module)))
 
 /***/ }),
-/* 80 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseIsTypedArray = __webpack_require__(53),
-    baseUnary = __webpack_require__(57),
-    nodeUtil = __webpack_require__(69);
+var baseIsTypedArray = __webpack_require__(55),
+    baseUnary = __webpack_require__(59),
+    nodeUtil = __webpack_require__(71);
 
 /* Node.js helper references. */
 var nodeIsTypedArray = nodeUtil && nodeUtil.isTypedArray;
@@ -3894,12 +3944,12 @@ module.exports = isTypedArray;
 
 
 /***/ }),
-/* 81 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayLikeKeys = __webpack_require__(49),
-    baseKeysIn = __webpack_require__(54),
-    isArrayLike = __webpack_require__(20);
+var arrayLikeKeys = __webpack_require__(51),
+    baseKeysIn = __webpack_require__(56),
+    isArrayLike = __webpack_require__(22);
 
 /**
  * Creates an array of the own and inherited enumerable property names of `object`.
@@ -3932,7 +3982,7 @@ module.exports = keysIn;
 
 
 /***/ }),
-/* 82 */
+/* 84 */
 /***/ (function(module, exports) {
 
 /**
@@ -3956,13 +4006,31 @@ module.exports = stubFalse;
 
 
 /***/ }),
-/* 83 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(25);
+var stringify = __webpack_require__(87);
+var parse = __webpack_require__(86);
+var formats = __webpack_require__(26);
+
+module.exports = {
+    formats: formats,
+    parse: parse,
+    stringify: stringify
+};
+
+
+/***/ }),
+/* 86 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(27);
 
 var has = Object.prototype.hasOwnProperty;
 
@@ -4137,14 +4205,14 @@ module.exports = function (str, opts) {
 
 
 /***/ }),
-/* 84 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(25);
-var formats = __webpack_require__(24);
+var utils = __webpack_require__(27);
+var formats = __webpack_require__(26);
 
 var arrayPrefixGenerators = {
     brackets: function brackets(prefix) { // eslint-disable-line func-name-matching
@@ -4354,7 +4422,7 @@ module.exports = function (object, opts) {
 
 
 /***/ }),
-/* 85 */
+/* 88 */
 /***/ (function(module, exports) {
 
 var g;

@@ -1,4 +1,4 @@
-import amvTrafficsoftRestJs from "../../src/amv-trafficsoft-rest-js.js";
+import amvTrafficsoftRestJs from "../../src/amv-trafficsoft-rest-js";
 import nock from "nock";
 
 describe('xfcd-client', () => {
@@ -99,7 +99,7 @@ describe('xfcd-client', () => {
       .then(response => {
 
         expect(response).to.be.ok;
-        expect(response.data).to.be.equal('');
+        expect(response.data).to.be.true;
 
         done();
       })

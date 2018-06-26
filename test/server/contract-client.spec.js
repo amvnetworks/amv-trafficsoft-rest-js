@@ -1,4 +1,4 @@
-import amvTrafficsoftRestJs from "../../src/amv-trafficsoft-rest-js.js";
+import amvTrafficsoftRestJs from "../../src/amv-trafficsoft-rest-js";
 import nock from "nock";
 
 describe('contract-client', () => {
