@@ -642,7 +642,7 @@ var _defaults3 = _interopRequireDefault(_defaults2);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var isBrowserEnvironment = typeof window !== 'undefined' && !!window.navigator;
-var userAgent = 'amv-trafficsoft-rest-js/0.2.0';
+var userAgent = 'amv-trafficsoft-rest-js/0.3.0';
 
 /**
  * Workaround for axios array params serialization.
